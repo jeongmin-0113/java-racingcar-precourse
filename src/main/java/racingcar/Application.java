@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public void main(String[] args) {
     	Vector<Car> cars = makeCarVector();
+    	int trial = getTrialTime();
 
     }
 
@@ -32,4 +33,18 @@ public class Application {
     	return name_array;
     }
 
+    public int getTrialTime() {
+    	int times_of_trial = 0;
+
+    	try {
+    		System.out.println("시도할 회수는 몇회인가요?");
+    		times_of_trial += Integer.parseInt(readLine());
+    	}
+    	catch (NumberFormatException error) {
+    		System.out.println("[ERROR] 시도 횟수는 숫자여야 한다.");
+    		getTrialTime();
+    	}
+
+    	return times_of_trial;
+    }
 }
