@@ -7,6 +7,8 @@ public class Application {
     	Vector<Car> cars = makeCarVector();
     	int trial = getTrialTime();
 
+    	cars = startGame(cars, trial);
+
     }
 
     public Vector<Car> makeCarVector() {
@@ -46,5 +48,21 @@ public class Application {
     	}
 
     	return times_of_trial;
+    }
+
+    public Vector<Car> startGame(Vector<Car> cars, int t) {
+    	System.out.println("실행 결과");
+
+    	for (int i=0;i<t;i++) {
+    		race(cars);
+    	}
+
+    	return cars;
+    }
+
+    public void race(Vector<Car> cars) {
+    	for (int i=0;i<cars.size();i++) {
+    		cars.elementAt(i).isMoved();
+    	}
     }
 }
