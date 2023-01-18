@@ -24,6 +24,10 @@ public class Car {
     	return this.position;
     }
 
+    public String returnName() {
+    	return this.name;
+    }
+
     private void printPosition() {
     	System.out.println(this.name);
     	for (int i=0;i<position;i++) {

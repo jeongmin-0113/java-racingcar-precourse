@@ -8,7 +8,7 @@ public class Application {
     	int trial = getTrialTime();
 
     	cars = startGame(cars, trial);
-
+    	showGameResult(cars);
     }
 
     public Vector<Car> makeCarVector() {
@@ -54,15 +54,46 @@ public class Application {
     	System.out.println("실행 결과");
 
     	for (int i=0;i<t;i++) {
-    		race(cars);
+    		cars = race(cars);
     	}
 
     	return cars;
     }
 
-    public void race(Vector<Car> cars) {
+    public Vector<Car> race(Vector<Car> cars) {
     	for (int i=0;i<cars.size();i++) {
     		cars.elementAt(i).isMoved();
     	}
+
+    	return cars;
+    }
+
+    public void showGameResult(Vector<Car> cars) {
+    	String winners = "";
+    	int bestscore = returnBestScore(cars);
+
+    	for (int i=0;i<cars.size();i++) {
+    		if(bestscore == cars.elementAt(i).returnPosition()) {
+    			winners += cars.elementAt(i).returnName();
+    			winners += ", ";
+    		}
+    	}
+    	winners = winners.substring(0, winners.length()-2);
+
+    	System.out.println("최종 우승자 : ");
+    	System.out.println(winners);
+
+    }
+
+    public int returnBestScore(Vector<Car> cars) {
+    	int bestscore = 0;
+    	for (int i=0;i<cars.size();i++) {
+    		int current = cars.elementAt(i).returnPosition();
+    		if (current > bestscore) {
+    			bestscore = current;
+    		}
+    	}
+
+    	return bestscore;
     }
 }
